@@ -17,6 +17,7 @@ Or copy a `skills/<name>/` folder into your agent's skills directory.
 | check-url-for-phishing | Phishing and scam list check for a URL or domain |
 | screen-address-for-ofac-sanctions | OFAC SDN screening for a crypto address |
 | detect-ascii-smuggling-and-hidden-unicode | Hidden Unicode tag text, zero-width and bidi characters, look-alike words |
+| convert-and-ocr-documents | PDF text extraction, OCR, merge, split, compress, watermark, protect, HTML to PDF, images to PDF |
 | screenshot-a-web-page | PNG or JPEG of a public page, full page or dark mode |
 | monitor-a-router-or-cron-job-from-outside | Free outside uptime, heartbeat and MikroTik monitoring with Telegram, ntfy or webhook alerts |
 
