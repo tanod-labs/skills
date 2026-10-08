@@ -1,11 +1,6 @@
 ---
 name: convert-and-ocr-documents
-description:
-  Convert, OCR and edit PDFs and documents through hosted tools: extract text, OCR scanned PDFs and images,
-  merge, split, extract or remove pages, rotate, compress, watermark, number pages, protect or unlock, read
-  metadata, HTML or a URL to PDF, images to PDF and PDF to images. Use when a task involves a PDF, a scan, a
-  document to read or produce, or 'make this a PDF'. Triggers on PDF, scan, OCR, merge, compress, watermark,
-  page numbers, password, docx, html-to-pdf.
+description: "Convert, OCR and edit PDFs and documents through hosted tools, extract text, OCR scanned PDFs and images, merge, split, extract or remove pages, rotate, compress, watermark, number pages, protect or unlock, read metadata, HTML or a URL to PDF, images to PDF and PDF to images. Use when a task involves a PDF, a scan, a document to read or produce, or 'make this a PDF'. Triggers on PDF, scan, OCR, merge, compress, watermark, page numbers, password, docx, html-to-pdf."
 license: MIT
 metadata:
   author: tanod
