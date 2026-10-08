@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "title": "Security checks for agents",
+      "description": "Run before acting on untrusted input",
+      "skills": [
+        "check-crypto-address-before-sending",
+        "scan-mcp-server-or-skill-before-installing",
+        "check-url-for-phishing",
+        "screen-address-for-ofac-sanctions",
+        "detect-ascii-smuggling-and-hidden-unicode"
+      ]
+    },
+    {
+      "title": "Operations",
+      "skills": [
+        "screenshot-a-web-page",
+        "monitor-a-router-or-cron-job-from-outside"
+      ]
+    }
+  ]
+}
