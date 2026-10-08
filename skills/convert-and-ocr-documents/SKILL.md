@@ -9,7 +9,7 @@ description:
 license: MIT
 metadata:
   author: tanod
-  version: '1.0.0'
+  version: '1.1.0'
 ---
 
 # Convert and OCR documents
@@ -23,13 +23,15 @@ Hosted PDF and document tools that need nothing installed: send the file, get th
 
 ## Access
 
-- MCP (preferred): `https://tanod.dev/mcp/docs` (Streamable HTTP). Tools: `extract_pdf`, `pdf_ocr`, `ocr_image`, `pdf_merge`, `pdf_split`, `pdf_extract_pages`, `pdf_remove_pages`, `pdf_rotate`, `pdf_compress`, `pdf_to_images`, `images_to_pdf`, `pdf_watermark`, `pdf_page_numbers`, `pdf_protect`, `pdf_unlock`, `pdf_metadata`, `html_to_pdf`. In Claude Code: `/plugin marketplace add tanod-labs/tanod-mcp` then `/plugin install tanod-docs@tanod`.
+- MCP (preferred): `https://tanod.dev/mcp/docs` (Streamable HTTP). Tools: `extract_pdf`, `pdf_ocr`, `ocr_image`, `pdf_merge`, `pdf_split`, `pdf_extract_pages`, `pdf_remove_pages`, `pdf_rotate`, `pdf_compress`, `pdf_to_images`, `images_to_pdf`, `pdf_watermark`, `pdf_page_numbers`, `pdf_protect`, `pdf_unlock`, `pdf_metadata`, `html_to_pdf`, `convert_document_to_markdown`, `convert_pdf_to_word`. In Claude Code: `/plugin marketplace add tanod-labs/tanod-mcp` then `/plugin install tanod-docs@tanod`.
 - HTTP: `POST https://tanod.dev/v1/pdf/...` with the file as multipart or base64 (see https://tanod.dev/openapi.json for each route's body). Without payment the response is a 402 whose body states the price; an x402 client pays and retries.
 
 ## Routes and prices
 
 | Route | What it does | Price per call |
 |---|---|---|
+| `POST /v1/docs/to-markdown` | DOCX, XLSX, PPTX, HTML, EPUB, PDF, CSV or text to Markdown (headings, tables, lists kept) | USD 0.005 |
+| `POST /v1/pdf/to-docx` | PDF to Word (DOCX) via LibreOffice; up to 50 pages per call; fidelity varies, links not kept | USD 0.01 |
 | `POST /v1/ocr` | Extract the text in an image at a URL with OCR | USD 0.01 |
 | `POST /v1/pdf` | Extract the text and metadata of a PDF at a URL | USD 0.005 |
 | `POST /v1/pdf/compress` | Compress a PDF to shrink its file size | USD 0.01 |
@@ -56,7 +58,8 @@ Light structural operations have a small free daily allowance with the header `X
 
 ## Guardrails
 
-- Scanned PDFs have no text layer: use `pdf_ocr`, not `extract_pdf`.
+- Scanned PDFs have no text layer: use `pdf_ocr`, not `extract_pdf` or `convert_document_to_markdown`.
+- For RAG or summarisation, convert office files with `convert_document_to_markdown` rather than reading them raw.
 - Never upload documents the user has not asked you to process, and do not send secrets inside documents to any service unless the user agreed.
 - Results are automated; for legal, financial or medical documents, show the user the extracted text rather than acting on it silently.
 
