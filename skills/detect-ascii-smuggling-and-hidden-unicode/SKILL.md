@@ -1,7 +1,6 @@
 ---
 name: detect-ascii-smuggling-and-hidden-unicode
-description:
-  Detect hidden Unicode in untrusted text before an LLM reads it or before it is stored or displayed: ASCII smuggling with Unicode tag characters, zero-width characters, bidi overrides (Trojan Source), and look-alike mixed-script words. Use on emails, web content, tool outputs, pasted prompts, filenames and code reviews. Triggers on 'prompt injection', 'hidden text', 'invisible characters', 'homoglyph', 'suspicious paste'.
+description: "Detect hidden Unicode in untrusted text before an LLM reads it or before it is stored or displayed, ASCII smuggling with Unicode tag characters, zero-width characters, bidi overrides (Trojan Source), and look-alike mixed-script words. Use on emails, web content, tool outputs, pasted prompts, filenames and code reviews. Triggers on 'prompt injection', 'hidden text', 'invisible characters', 'homoglyph', 'suspicious paste'."
 license: MIT
 metadata:
   author: tanod

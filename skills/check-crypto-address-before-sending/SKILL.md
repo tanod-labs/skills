@@ -1,7 +1,6 @@
 ---
 name: check-crypto-address-before-sending
-description:
-  Check a crypto address or contract for risk right before sending funds, approving a token, or buying a token on Base or Ethereum. Use whenever a user or a workflow is about to interact with an address they did not deploy themselves: transfers, approvals, swaps, mints, signing a permit. Triggers on wallet addresses, token contracts, 'is this safe', 'before I send', 'approve', 'allowance'.
+description: "Check a crypto address or contract for risk right before sending funds, approving a token, or buying a token on Base or Ethereum. Use whenever a user or a workflow is about to interact with an address they did not deploy themselves, transfers, approvals, swaps, mints, signing a permit. Triggers on wallet addresses, token contracts, 'is this safe', 'before I send', 'approve', 'allowance'."
 license: MIT
 metadata:
   author: tanod
