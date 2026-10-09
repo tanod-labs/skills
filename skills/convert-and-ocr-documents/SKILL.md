@@ -4,7 +4,7 @@ description: "Convert, OCR and edit PDFs and documents through hosted tools, ext
 license: MIT
 metadata:
   author: tanod
-  version: '1.1.0'
+  version: '1.2.0'
 ---
 
 # Convert and OCR documents
@@ -27,6 +27,7 @@ Hosted PDF and document tools that need nothing installed: send the file, get th
 |---|---|---|
 | `POST /v1/docs/to-markdown` | DOCX, XLSX, PPTX, HTML, EPUB, PDF, CSV or text to Markdown (headings, tables, lists kept) | USD 0.005 |
 | `POST /v1/pdf/to-docx` | PDF to Word (DOCX) via LibreOffice; up to 50 pages per call; fidelity varies, links not kept | USD 0.01 |
+| `POST /v1/docs/to-pdf` | Word, Excel and PowerPoint (DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF, DOC, XLS, PPT) to PDF via LibreOffice; macros never run, unsafe links removed; MCP tool `convert_office_to_pdf` | USD 0.01 |
 | `POST /v1/ocr` | Extract the text in an image at a URL with OCR | USD 0.01 |
 | `POST /v1/pdf` | Extract the text and metadata of a PDF at a URL | USD 0.005 |
 | `POST /v1/pdf/compress` | Compress a PDF to shrink its file size | USD 0.01 |
