@@ -9,7 +9,7 @@ metadata:
 
 # Convert and OCR documents
 
-Hosted PDF and document tools that need nothing installed: send the file, get the result. Pay per call in USDC over x402 (fractions of a cent to a cent), or use the MCP server where your client pays. No API key.
+Hosted PDF and document tools that need nothing installed: send the file, get the result. Pay per call in USDC over x402 (USD 0.0025–0.01 for the routes below), or use the MCP server where your client pays. No API key. Check the live OpenAPI spec for current prices.
 
 ## When to use
 
@@ -18,8 +18,8 @@ Hosted PDF and document tools that need nothing installed: send the file, get th
 
 ## Access
 
-- MCP (preferred): `https://tanod.dev/mcp/docs` (Streamable HTTP). Tools: `extract_pdf`, `pdf_ocr`, `ocr_image`, `pdf_merge`, `pdf_split`, `pdf_extract_pages`, `pdf_remove_pages`, `pdf_rotate`, `pdf_compress`, `pdf_to_images`, `images_to_pdf`, `pdf_watermark`, `pdf_page_numbers`, `pdf_protect`, `pdf_unlock`, `pdf_metadata`, `html_to_pdf`, `convert_document_to_markdown`, `convert_pdf_to_word`. In Claude Code: `/plugin marketplace add tanod-labs/tanod-mcp` then `/plugin install tanod-docs@tanod`.
-- HTTP: `POST https://tanod.dev/v1/pdf/...` with the file as multipart or base64 (see https://tanod.dev/openapi.json for each route's body). Without payment the response is a 402 whose body states the price; an x402 client pays and retries.
+- MCP (preferred): `https://tanod.dev/mcp/docs` (Streamable HTTP). Discover current tools with `tools/list`. In Claude Code: `/plugin marketplace add tanod-labs/tanod-mcp` then `/plugin install tanod-docs@tanod`.
+- HTTP: send `application/json` to each route below, with a public `url` or the route's base64 field (see https://tanod.dev/openapi.json for each request body). `/v1/docs/to-pdf` accepts `url` or `file_base64`, not multipart uploads. Without payment the response is a 402 whose body states the price; an x402 client pays and retries.
 
 ## Routes and prices
 
@@ -27,15 +27,15 @@ Hosted PDF and document tools that need nothing installed: send the file, get th
 |---|---|---|
 | `POST /v1/docs/to-markdown` | DOCX, XLSX, PPTX, HTML, EPUB, PDF, CSV or text to Markdown (headings, tables, lists kept) | USD 0.005 |
 | `POST /v1/pdf/to-docx` | PDF to Word (DOCX) via LibreOffice; up to 50 pages per call; fidelity varies, links not kept | USD 0.01 |
-| `POST /v1/docs/to-pdf` | Word, Excel and PowerPoint (DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF, DOC, XLS, PPT) to PDF via LibreOffice; macros never run, unsafe links removed; MCP tool `convert_office_to_pdf` | USD 0.01 |
+| `POST /v1/docs/to-pdf` | DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF or plain text to PDF via LibreOffice; legacy DOC/XLS/PPT are rejected; macros never run, unsafe links removed; MCP tool `convert_office_to_pdf` | USD 0.01 |
 | `POST /v1/pdf/tables` | Every table in a text PDF as rows (JSON, CSV or XLSX); MCP tool `extract_pdf_tables` | USD 0.01 |
-| `POST /v1/pdf/bank-statement` | Bank statement PDF to transactions (date, description, amount, balance), each row reconciled against the running balance, with a confidence score; CSV, XLSX, JSON, OFX or QIF; MCP tool `convert_bank_statement` | USD 0.02 |
-| `POST /v1/ocr` | Extract the text in an image at a URL with OCR | USD 0.01 |
+| `POST /v1/pdf/bank-statement` | Bank statement PDF to CSV, XLSX, JSON, OFX or QIF; reconciled rows and confidence score; MCP tool `convert_bank_statement` | USD 0.01 |
+| `POST /v1/ocr` | Extract the text in an image at a URL with OCR | USD 0.0025 |
 | `POST /v1/pdf` | Extract the text and metadata of a PDF at a URL | USD 0.005 |
 | `POST /v1/pdf/compress` | Compress a PDF to shrink its file size | USD 0.01 |
 | `POST /v1/pdf/extract-pages` | Extract pages from a PDF | USD 0.005 |
 | `POST /v1/pdf/from-images` | Convert 1-30 images | USD 0.005 |
-| `POST /v1/pdf/html-to-pdf` | Convert a web page URL to PDF | USD 0.01 |
+| `POST /v1/pdf/html-to-pdf` | Convert a web page URL to PDF | USD 0.0045 |
 | `POST /v1/pdf/merge` | Merge 2-20 PDFs | USD 0.005 |
 | `POST /v1/pdf/metadata` | Read, edit or strip the metadata of a PDF | USD 0.005 |
 | `POST /v1/pdf/page-numbers` | Add page numbers to a PDF | USD 0.005 |
@@ -46,7 +46,7 @@ Hosted PDF and document tools that need nothing installed: send the file, get th
 | `POST /v1/pdf/unlock` | Unlock a password-protected PDF | USD 0.005 |
 | `POST /v1/pdf/watermark` | Add a text watermark to a PDF | USD 0.005 |
 
-Light structural operations have a small free daily allowance with the header `X-Tanod-Free: 1`; OCR, compress and rendering do not (they drive heavy workers).
+Light structural operations and image OCR (`/v1/ocr`) have a free daily allowance with the header `X-Tanod-Free: 1`; PDF OCR, compress and rendering do not (they drive heavy workers). Check each route's live OpenAPI entry for its current allowance.
 
 ## Reading results
 

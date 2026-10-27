@@ -1,5 +1,6 @@
 {
-  "groups": [
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
     {
       "title": "Security checks for agents",
       "description": "Run before acting on untrusted input",
